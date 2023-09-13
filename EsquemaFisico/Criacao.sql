@@ -32,7 +32,7 @@ CREATE TABLE ContaPremium(
     Numero VARCHAR(16) NOT NULL,
     Email VARCHAR(100) NOT NULL UNIQUE,
     CONSTRAINT PK_ContaPremium PRIMARY KEY(Acesso),
-    CONSTRAINT FK_Usuario_Email FOREIGN KEY (Email) REFERENCES Usuario (Email) ON DELETE CASCADE,
+    CONSTRAINT FK_ContaPremium_Usuario_Email FOREIGN KEY (Email) REFERENCES Usuario (Email) ON DELETE CASCADE,
     CONSTRAINT FK_ContaPremium_Numero FOREIGN KEY (Numero) REFERENCES Cartao (Numero)
 );
 
@@ -41,7 +41,7 @@ CREATE TABLE ContaComum(
     Senha VARCHAR(10),
     Email VARCHAR(100) NOT NULL UNIQUE,
     CONSTRAINT PK_ContaComum PRIMARY KEY (Acesso),
-    CONSTRAINT FK_Email_Usuario FOREIGN KEY (Email) REFERENCES Usuario (Email) ON DELETE CASCADE
+    CONSTRAINT FK_ContaComum_Email_Usuario FOREIGN KEY (Email) REFERENCES Usuario (Email) ON DELETE CASCADE
 );
 
 CREATE TABLE Anuncio(
@@ -60,9 +60,10 @@ CREATE TABLE Playlist(
 
 -- Criação das tabelas associativas 
 CREATE TABLE Escuta(
-    Email VARCHAR NOT NULL,
-    ISBN VARCHAR NOT NULL,
-    CONSTRAINT PK_Escuta PRIMARY KEY (Email, ISBN),
+    Email VARCHAR(100) NOT NULL,
+    ISBN VARCHAR(100) NOT NULL,
+    DataEscutou VARCHAR(100),
+    CONSTRAINT PK_Escuta PRIMARY KEY (Email, ISBN, DataEscutou),
     CONSTRAINT FK_Escuta_Usuario_Email FOREIGN KEY (Email) REFERENCES Usuario(Email),
     CONSTRAINT FK_Escuta_Musica_ISBN FOREIGN KEY (ISBN) REFERENCES Musica(ISBN)
 );
@@ -71,20 +72,20 @@ CREATE TABLE Escuta(
     
 CREATE TABLE Possui(
     Acesso VARCHAR (100),
-    adID VARCHAR (4),
+    adID VARCHAR (5),
     CONSTRAINT PK_Possui PRIMARY KEY (Acesso, adID),
     CONSTRAINT FK_ContaComun_Acesso FOREIGN KEY (Acesso) REFERENCES ContaComum ON DELETE CASCADE,
     CONSTRAINT FK_Anuncio_AdID FOREIGN KEY (adID) REFERENCES Anuncio(adID) ON DELETE CASCADE
 );
 
--- Falta testar!!!!! -- 
+-- Falta testar!!!!! --  --Não rolou
 CREATE TABLE PodeSerEm(
     Email VARCHAR(100),
-    NomePlaylist (100),
+    NomePlaylist VARCHAR(100),
     ISBN VARCHAR(100),
     DataEscutou VARCHAR(100),
     CONSTRAINT Pk_PodeSerEm PRIMARY KEY (Email, NomePlaylist, ISBN, DataEscutou),
-    CONSTRAINT FK_Usuario_EmailNomePlaylist FOREIGN KEY (Email, NomePlaylist) REFERENCES Playlist(email, nome) ON DELETE CASCADE,
+    CONSTRAINT FK_Usuario_EmailNomePlaylist FOREIGN KEY (Email, NomePlaylist) REFERENCES Playlist(email, NomePlaylist) ON DELETE CASCADE,
     CONSTRAINT FK_Playlist_ISBNDataEscutou FOREIGN KEy (ISBN, DataEscutou) REFERENCES Escuta(ISBN, DataEscutou) ON DELETE CASCADE
 );
 
@@ -92,14 +93,14 @@ CREATE TABLE Segue(
     Seguindo_Email VARCHAR(100) NOT NULL,
     Seguidor_Email VARCHAR(100) NOT NULL,
     CONSTRAINT PK_segue PRIMARY KEY(Seguindo_Email, Seguidor_Email),
-    CONSTRAINT FK_Seguidor_Email FOREIGN KEY (Seguidor_Email) REFERENCES usuario (Email),
-    CONSTRAINT FK_seguindo_Email FOREIGN KEY (Seguindo_Email) REFERENCES usuario (Email)   
+    CONSTRAINT FK_Seguidor_Email FOREIGN KEY (Seguidor_Email) REFERENCES usuario (Seguidor_Email),
+    CONSTRAINT FK_seguindo_Email FOREIGN KEY (Seguindo_Email) REFERENCES usuario (Seguindo_Email)   
 );
 
-CREATE TABLE Adiciona(
-    Email VARCHAR NOT NULL,
-    ISBN VARCHAR NOT NULL,
-    Nome VARCHAR NOT NULL, 
+CREATE TABLE Adiciona( --Não rolou
+    Email VARCHAR(100) NOT NULL,
+    ISBN VARCHAR(100) NOT NULL,
+    Nome VARCHAR(100) NOT NULL, 
     CONSTRAINT PK_adiciona PRIMARY KEY (Email, ISBN, Nome),
     CONSTRAINT FK_Adiciona_Usuario_Email FOREIGN KEY (Email) REFERENCES Usuario(Email),
     CONSTRAINT FK_Adiciona_Musica_ISBN FOREIGN KEY (ISBN) REFERENCES Musica(ISBN),
