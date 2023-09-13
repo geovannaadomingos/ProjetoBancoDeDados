@@ -178,7 +178,7 @@ INSERT INTO Anuncio (adID)
 VALUES ('AD009');
 
 INSERT INTO Anuncio (adID)
-VALUES ('AD0010');
+VALUES ('AD010');
 
 
 -- Povoamento da tabela Playlist
@@ -201,6 +201,9 @@ VALUES ('Músicas dos Anos 80', 'usuario5@example.com');
 -- Povoamento da tabela Escuta
 INSERT INTO Escuta (Email, ISBN, DataEscutou)
 VALUES ('usuario1@example.com', '1234567890', '2023-09-10');
+
+INSERT INTO Escuta (Email, ISBN, DataEscutou)
+VALUES ('usuario1@example.com', '1234567890', '2023-19-10');
 
 INSERT INTO Escuta (Email, ISBN, DataEscutou)
 VALUES ('usuario2@example.com', '2345678901', '2023-09-11');
@@ -248,6 +251,23 @@ VALUES ('acesso11', 'AD005');
 
 
 -- Povoamento da tabela PodeSerEm
+INSERT INTO PodeSerEm (Email, NomePlaylist, ISBN, DataEscutou)
+VALUES ('usuario1@example.com', 'Minhas Músicas Favoritas', '1234567890', '2023-09-10');
+
+INSERT INTO PodeSerEm (Email, NomePlaylist, ISBN, DataEscutou)
+VALUES ('usuario1@example.com', 'Minhas Músicas Favoritas', '1234567890', '2023-19-10');
+
+INSERT INTO PodeSerEm (Email, NomePlaylist, ISBN, DataEscutou)
+VALUES ('usuario2@example.com', 'Músicas para Malhar', '2345678901', '2023-09-11');
+
+INSERT INTO PodeSerEm (Email, NomePlaylist, ISBN, DataEscutou)
+VALUES ('usuario3@example.com', 'Músicas Relaxantes', '3456789012', '2023-09-12');
+
+INSERT INTO PodeSerEm (Email, NomePlaylist, ISBN, DataEscutou)
+VALUES ('usuario4@example.com', 'Playlist de Verão', '4567890123', '2023-09-13');
+
+INSERT INTO PodeSerEm (Email, NomePlaylist, ISBN, DataEscutou)
+VALUES ('usuario5@example.com', 'Músicas dos Anos 80', '5678901234', '2023-09-14');
 
 
 -- Povoamento da tabela Segue
@@ -313,3 +333,35 @@ VALUES ('usuario4@example.com', 'usuario5@example.com');
 
 INSERT INTO Segue (Seguindo_Email, Seguidor_Email)
 VALUES ('usuario5@example.com', 'usuario10@example.com');
+
+
+-- Povoamento da tabela Adiciona
+INSERT INTO Adiciona (Email, ISBN, NomePlaylist)
+VALUES ('usuario1@example.com', '1234567890', 'Minhas Músicas Favoritas');
+
+INSERT INTO Adiciona (Email, ISBN, NomePlaylist)
+VALUES ('usuario2@example.com', '2345678901', 'Músicas para Malhar');
+
+INSERT INTO Adiciona (Email, ISBN, NomePlaylist)
+VALUES ('usuario3@example.com', '3456789012', 'Músicas Relaxantes');
+
+INSERT INTO Adiciona (Email, ISBN, NomePlaylist)
+VALUES ('usuario4@example.com', '4567890123', 'Playlist de Verão');
+
+INSERT INTO Adiciona (Email, ISBN, NomePlaylist)
+VALUES ('usuario5@example.com', '5678901234', 'Músicas dos Anos 80');
+
+INSERT INTO Adiciona (Email, ISBN, NomePlaylist)
+VALUES ('usuario1@example.com', '2345678901', 'Minhas Músicas Favoritas');
+
+INSERT INTO Adiciona (Email, ISBN, NomePlaylist)
+VALUES ('usuario2@example.com', '3456789012', 'Músicas para Malhar');
+
+INSERT INTO Adiciona (Email, ISBN, NomePlaylist)
+VALUES ('usuario3@example.com', '4567890123', 'Músicas Relaxantes');
+
+INSERT INTO Adiciona (Email, ISBN, NomePlaylist)
+VALUES ('usuario4@example.com', '5678901234', 'Playlist de Verão');
+
+INSERT INTO Adiciona (Email, ISBN, NomePlaylist)
+VALUES ('usuario5@example.com', '1234567890', 'Músicas dos Anos 80');
