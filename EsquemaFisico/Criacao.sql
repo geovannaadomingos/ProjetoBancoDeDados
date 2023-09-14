@@ -62,7 +62,7 @@ CREATE TABLE Playlist(
 CREATE TABLE Escuta(
     Email VARCHAR(100) NOT NULL,
     ISBN VARCHAR(100) NOT NULL,
-    DataEscutou VARCHAR(100), -- Trocar para date
+    DataEscutou DATE,
     CONSTRAINT PK_Escuta PRIMARY KEY (Email, ISBN, DataEscutou),
     CONSTRAINT FK_Escuta_Usuario_Email FOREIGN KEY (Email) REFERENCES Usuario(Email),
     CONSTRAINT FK_Escuta_Musica_ISBN FOREIGN KEY (ISBN) REFERENCES Musica(ISBN)
@@ -82,7 +82,7 @@ CREATE TABLE PodeSerEm(
     Email VARCHAR(100),
     NomePlaylist VARCHAR(100),
     ISBN VARCHAR(100),
-    DataEscutou VARCHAR(100),
+    DataEscutou DATE,
     CONSTRAINT Pk_PodeSerEm PRIMARY KEY (Email, NomePlaylist, ISBN, DataEscutou),
     CONSTRAINT FK_Usuario_EmailNomePlaylist FOREIGN KEY (Email, NomePlaylist) REFERENCES Playlist(Email, NomePlaylist) ON DELETE CASCADE,
     CONSTRAINT FK_Playlist_ISBN_DataEscutou FOREIGN KEY (Email, ISBN, DataEscutou) REFERENCES Escuta(Email, ISBN, DataEscutou) ON DELETE CASCADE
@@ -93,7 +93,7 @@ CREATE TABLE Segue(
     Seguidor_Email VARCHAR(100) NOT NULL,
     CONSTRAINT PK_segue PRIMARY KEY(Seguindo_Email, Seguidor_Email),
     CONSTRAINT FK_Seguidor_Email FOREIGN KEY (Seguidor_Email) REFERENCES usuario (Email),
-    CONSTRAINT FK_seguindo_Email FOREIGN KEY (Seguindo_Email) REFERENCES usuario (Seguindo_Email)   
+    CONSTRAINT FK_seguindo_Email FOREIGN KEY (Seguindo_Email) REFERENCES usuario (Email)   
 );
 
 CREATE TABLE Adiciona(
@@ -105,4 +105,3 @@ CREATE TABLE Adiciona(
     CONSTRAINT FK_Adiciona_Musica_ISBN FOREIGN KEY (ISBN) REFERENCES Musica(ISBN),
     CONSTRAINT FK_Adiciona_Playlist_Email_Nome FOREIGN KEY (Email, NomePlaylist) REFERENCES Playlist(Email, NomePlaylist)
 );
-    

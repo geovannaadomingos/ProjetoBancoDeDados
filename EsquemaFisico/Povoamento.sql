@@ -81,12 +81,6 @@ INSERT INTO Artista (ISBN, NomeArtista)
 VALUES ('5678901234', 'Bruno Mars');
 
 INSERT INTO Artista (ISBN, NomeArtista)
-VALUES ('6789012345', 'Rihanna');
-
-INSERT INTO Artista (ISBN, NomeArtista)
-VALUES ('7890123456', 'Justin Bieber');
-
-INSERT INTO Artista (ISBN, NomeArtista)
 VALUES ('8901234567', 'Ariana Grande');
 
 INSERT INTO Artista (ISBN, NomeArtista)
@@ -200,22 +194,34 @@ VALUES ('Músicas dos Anos 80', 'usuario5@example.com');
 
 -- Povoamento da tabela Escuta
 INSERT INTO Escuta (Email, ISBN, DataEscutou)
-VALUES ('usuario1@example.com', '1234567890', '2023-09-10');
+VALUES ('usuario1@example.com', '1234567890', DATE '2023-09-10');
 
 INSERT INTO Escuta (Email, ISBN, DataEscutou)
-VALUES ('usuario1@example.com', '1234567890', '2023-19-10');
+VALUES ('usuario1@example.com', '1234567890', DATE '2023-10-10');
 
 INSERT INTO Escuta (Email, ISBN, DataEscutou)
-VALUES ('usuario2@example.com', '2345678901', '2023-09-11');
+VALUES ('usuario2@example.com', '2345678901', DATE '2023-09-11');
 
 INSERT INTO Escuta (Email, ISBN, DataEscutou)
-VALUES ('usuario3@example.com', '3456789012', '2023-09-12');
+VALUES ('usuario3@example.com', '3456789012', DATE '2023-09-12');
 
 INSERT INTO Escuta (Email, ISBN, DataEscutou)
-VALUES ('usuario4@example.com', '4567890123', '2023-09-13');
+VALUES ('usuario4@example.com', '4567890123', DATE '2023-09-13');
 
 INSERT INTO Escuta (Email, ISBN, DataEscutou)
-VALUES ('usuario5@example.com', '5678901234', '2023-09-14');
+VALUES ('usuario5@example.com', '5678901234', DATE '2023-09-14');
+
+INSERT INTO Escuta (Email, ISBN, DataEscutou)
+VALUES ('usuario1@example.com', '2345678901', DATE '2023-10-10');
+
+INSERT INTO Escuta (Email, ISBN, DataEscutou)
+VALUES ('usuario1@example.com', '2345678901', DATE '2023-10-13');
+
+INSERT INTO Escuta (Email, ISBN, DataEscutou)
+VALUES ('usuario1@example.com', '2345678901', DATE '2023-12-21');
+
+INSERT INTO Escuta (Email, ISBN, DataEscutou)
+VALUES ('usuario1@example.com', '5678901234', DATE '2023-10-10');
 
 
 -- Povoamento da tabela Possui
@@ -244,7 +250,7 @@ INSERT INTO Possui (Acesso, adID)
 VALUES ('acesso10', 'AD004');
 
 INSERT INTO Possui (Acesso, adID)
-VALUES ('acesso10', 'AD0010');
+VALUES ('acesso10', 'AD010');
 
 INSERT INTO Possui (Acesso, adID)
 VALUES ('acesso11', 'AD005');
@@ -252,22 +258,22 @@ VALUES ('acesso11', 'AD005');
 
 -- Povoamento da tabela PodeSerEm
 INSERT INTO PodeSerEm (Email, NomePlaylist, ISBN, DataEscutou)
-VALUES ('usuario1@example.com', 'Minhas Músicas Favoritas', '1234567890', '2023-09-10');
+VALUES ('usuario1@example.com', 'Minhas Músicas Favoritas', '1234567890', DATE '2023-09-10');
 
 INSERT INTO PodeSerEm (Email, NomePlaylist, ISBN, DataEscutou)
-VALUES ('usuario1@example.com', 'Minhas Músicas Favoritas', '1234567890', '2023-19-10');
+VALUES ('usuario1@example.com', 'Minhas Músicas Favoritas', '1234567890', DATE '2023-10-10');
 
 INSERT INTO PodeSerEm (Email, NomePlaylist, ISBN, DataEscutou)
-VALUES ('usuario2@example.com', 'Músicas para Malhar', '2345678901', '2023-09-11');
+VALUES ('usuario2@example.com', 'Músicas para Malhar', '2345678901', DATE '2023-09-11');
 
 INSERT INTO PodeSerEm (Email, NomePlaylist, ISBN, DataEscutou)
-VALUES ('usuario3@example.com', 'Músicas Relaxantes', '3456789012', '2023-09-12');
+VALUES ('usuario3@example.com', 'Músicas Relaxantes', '3456789012', DATE '2023-09-12');
 
 INSERT INTO PodeSerEm (Email, NomePlaylist, ISBN, DataEscutou)
-VALUES ('usuario4@example.com', 'Playlist de Verão', '4567890123', '2023-09-13');
+VALUES ('usuario4@example.com', 'Playlist de Verão', '4567890123', DATE '2023-09-13');
 
 INSERT INTO PodeSerEm (Email, NomePlaylist, ISBN, DataEscutou)
-VALUES ('usuario5@example.com', 'Músicas dos Anos 80', '5678901234', '2023-09-14');
+VALUES ('usuario5@example.com', 'Músicas dos Anos 80', '5678901234', DATE '2023-09-14');
 
 
 -- Povoamento da tabela Segue
