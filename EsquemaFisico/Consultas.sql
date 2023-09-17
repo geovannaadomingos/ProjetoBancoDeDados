@@ -17,14 +17,45 @@ FROM Musica M
 LEFT JOIN Artista A
     ON M.ISBN = A.ISBN;
 
--- (SEMI JOIN)
+-- Exibir todos os usuários que possuem contas premium (SEMI JOIN)
+SELECT u.Email, u.Nome_Primeiro, u.Nome_Ultimo
+FROM Usuario u
+WHERE EXISTS (
+    SELECT 1
+    FROM ContaPremium cp
+    WHERE cp.Email = u.Email);
 
--- (ANTI JOIN)
+-- Exibir todos os usuários que não possuem contas premium (ANTI JOIN)
+SELECT u.Email, u.Nome_Primeiro, u.Nome_Ultimo
+FROM Usuario u
+WHERE NOT EXISTS (
+    SELECT 1
+    FROM ContaPremium cp
+    WHERE cp.Email = u.Email);
 
--- (SUBCONSULTA DO TIPO ESCALAR)
+-- Exibir a música com a maior duração (SUBCONSULTA DO TIPO ESCALAR)
+SELECT ISBN, Duracao
+FROM Musica
+WHERE Duracao = (SELECT MAX(Duracao) FROM Musica);
 
--- (SUBCONSULTA DO TIPO LINHA)
+-- Exibir todos os usuários e a contagem de playlists que cada um possui possui(SUBCONSULTA DO TIPO LINHA)
+SELECT u.Email, u.Nome_Primeiro, u.Nome_Ultimo, 
+    (SELECT COUNT(*) FROM Playlist p WHERE p.Email = u.Email) AS NumPlaylists
+FROM Usuario u;
 
--- (SUBCONSULTA DO TIPO TABELA)
+-- Exibir o email de todos os usuários que tem playlists com ao menos uma música (SUBCONSULTA DO TIPO TABELA)
+SELECT u.Email, u.Nome_Primeiro, u.Nome_Ultimo
+FROM Usuario u
+WHERE EXISTS (
+    SELECT 1
+    FROM Playlist p
+    WHERE p.Email = u.Email
+    GROUP BY p.Email
+    HAVING COUNT(*) >= 1;
 
--- (OPERAÇÃO DE CONJUNTO)
+-- Exibir todas as músicas que estão em ao menos duas playlists diferentes (OPERAÇÃO DE CONJUNTO)
+SELECT m.ISBN, m.Duracao
+FROM Musica m
+INNER JOIN Adiciona a ON m.ISBN = a.ISBN
+GROUP BY m.ISBN, m.Duracao
+HAVING COUNT(DISTINCT a.NomePlaylist) >= 2;
