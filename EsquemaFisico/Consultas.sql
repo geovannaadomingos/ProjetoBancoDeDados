@@ -38,10 +38,13 @@ SELECT ISBN, Duracao
 FROM Musica
 WHERE Duracao = (SELECT MAX(Duracao) FROM Musica);
 
--- Exibir todos os usuários e a contagem de playlists que cada um possui possui(SUBCONSULTA DO TIPO LINHA)
-SELECT u.Email, u.Nome_Primeiro, u.Nome_Ultimo, 
-    (SELECT COUNT(*) FROM Playlist p WHERE p.Email = u.Email) AS NumPlaylists
-FROM Usuario u;
+-- Exibir todos os usuários cujo primeiro e último nome sejam iguais ao do usuário com email usuario1@example.com (SUBCONSULTA DO TIPO LINHA)
+SELECT email
+FROM Usuario
+WHERE (nome_primeiro, nome_ultimo) =
+	(SELECT nome_primeiro, nome_ultimo
+     FROM Usuario
+     WHERE email = 'usuario1@example.com');
 
 -- Exibir o email de todos os usuários que tem playlists com ao menos uma música (SUBCONSULTA DO TIPO TABELA)
 SELECT u.Email, u.Nome_Primeiro, u.Nome_Ultimo
@@ -53,9 +56,9 @@ WHERE EXISTS (
     GROUP BY p.Email
     HAVING COUNT(*) >= 1);
 
--- Exibir todas as músicas que estão em ao menos duas playlists diferentes (OPERAÇÃO DE CONJUNTO)
-SELECT m.ISBN, m.Duracao
-FROM Musica m
-INNER JOIN Adiciona a ON m.ISBN = a.ISBN
-GROUP BY m.ISBN, m.Duracao
-HAVING COUNT(DISTINCT a.NomePlaylist) >= 2;
+-- Exibir todos os acessos e senhas de todas as contas cadastradas na base de dados (OPERAÇÃO DE CONJUNTO)
+    SELECT acesso, senha
+    FROM ContaComum
+UNION
+    SELECT acesso , senha
+    FROM ContaPremium;
