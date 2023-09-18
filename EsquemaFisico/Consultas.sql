@@ -21,7 +21,7 @@ LEFT JOIN Artista A
 SELECT u.Email, u.Nome_Primeiro, u.Nome_Ultimo
 FROM Usuario u
 WHERE EXISTS (
-    SELECT 1
+    SELECT *
     FROM ContaPremium cp
     WHERE cp.Email = u.Email);
 
@@ -29,7 +29,7 @@ WHERE EXISTS (
 SELECT u.Email, u.Nome_Primeiro, u.Nome_Ultimo
 FROM Usuario u
 WHERE NOT EXISTS (
-    SELECT 1
+    SELECT *
     FROM ContaPremium cp
     WHERE cp.Email = u.Email);
 
@@ -47,11 +47,11 @@ FROM Usuario u;
 SELECT u.Email, u.Nome_Primeiro, u.Nome_Ultimo
 FROM Usuario u
 WHERE EXISTS (
-    SELECT 1
+    SELECT *
     FROM Playlist p
     WHERE p.Email = u.Email
     GROUP BY p.Email
-    HAVING COUNT(*) >= 1;
+    HAVING COUNT(*) >= 1);
 
 -- Exibir todas as músicas que estão em ao menos duas playlists diferentes (OPERAÇÃO DE CONJUNTO)
 SELECT m.ISBN, m.Duracao
